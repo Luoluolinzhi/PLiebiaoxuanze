@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>练习(列表选择)</title>
+	<script type="text/javascript" src="./jquery.js"></script>
+	<style type="text/css">
+		div,ul,li,a{
+			margin: 0;
+			padding: 0;
+		}
+		.clearfix::after{
+			display: block;
+			clear: both;
+			height: 0;
+			content: "";
+		}
+		li{
+			list-style: none;
+			padding: 0 30px;
+			font-size: 20px;
+		}
+		.main li{
+			float: left;
+		}
+		a{
+			text-decoration: none;
+			color: red;
+		}
+		.show{
+			display: block;
+		}
+		.hide{
+			display: none;
+		}
+		.selected{
+			background: green;
+		}
+		.son{
+			margin-top: 40px;
+			float: left;
+			width: 360px;
+			background: pink;
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="main clearfix">
+		<ul>
+			<li class="selected"><a href="#">第一项</a></li>
+			<li><a href="#">第二项</a></li>
+			<li><a href="#">第三项</a></li>
+		</ul>
+	</div>
+	<div class="son">
+		<div>
+			<ul>
+				<li><a href="#">第一项</a></li>
+				<li><a href="#">第二项</a></li>
+				<li><a href="#">第三项</a></li>
+			</ul>
+		</div>
+		<div class="hide">
+			<ul>
+				<li><a href="#">第1项</a></li>
+				<li><a href="#">第2项</a></li>
+				<li><a href="#">第3项</a></li>
+			</ul>
+		</div>
+		<div class="hide">
+			<ul>
+				<li><a href="#">第x项</a></li>
+				<li><a href="#">第y项</a></li>
+				<li><a href="#">第z项</a></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("li").click(function(){
+			$("li").removeClass("selected");
+			$(this).addClass("selected");
+			var index = $(this).index();
+			/*index为当前所指的li标签的索引值*/
+			$(".son div").eq(index).removeClass("hide").siblings().addClass("hide"); 
+			/*查找son类中索引值为index的div，移除hide类，他的兄弟元素添加hide类*/
+
+		});
+	</script>
+</body>
+</html>
